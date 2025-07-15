@@ -51,7 +51,7 @@ class HomeViewBody extends StatelessWidget {
             ),
           ),
         ),
-        SliverToBoxAdapter(child: verticalSpace(40)),
+        SliverToBoxAdapter(child: verticalSpace(41)),
 
         SliverToBoxAdapter(
           child: Divider(
