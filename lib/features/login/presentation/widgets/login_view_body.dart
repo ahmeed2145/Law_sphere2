@@ -35,7 +35,7 @@ class LoginViewBody extends StatelessWidget {
               message: S.of(context).loginSuccess,
             ),
           );
-          Navigator.pushNamed(context, Routes.homeView);
+          Navigator.pushReplacementNamed(context, Routes.homeView);
         } else if (state is LoginFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             CustomSnackBar.error(context: context, message: state.message),
