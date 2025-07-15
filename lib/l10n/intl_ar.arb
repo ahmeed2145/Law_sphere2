@@ -1,0 +1,26 @@
+{
+    "email": "البريد الالكتروني",
+    "password": "كلمة المرور",
+    "login": "تسجيل الدخول",
+    "loginLoading": "يتم تسجيل الدخول",
+    "forgetPasswoerd": "نسيت كلمة المرور",
+    "createAccount": "انشاء حساب",
+    "loginSuccess": "تم تسجيل الدخول بنجاح",
+    "loginFailed": "فشل في تسجيل الدخول، الرجاء إعادة المحاولة لاحقا",
+    "letsStart": "هيا لنبدأ !",
+    "onBoardingSlogan": "انشأ حسابا لتستطيع الاطلاع علي المواد الخاصة بك",
+    "alradyHasAccount": "هل لديك حساب بالفعل؟ ",
+    "checkYourInternet": "تحقق من اتصالك بالإنترنت وحاول مرة أخرى.",
+    "anUnexpectedErrorOccurred": "حدث خطأ غير متوقع.",
+    "thisFieldIsRequiered": "هذا الحقل مطلوب",
+    "name": "الاسم",
+    "phone": "رقم الهاتف",
+    "homePage":"الصفحه الرئيسيه",
+      "textExplanation": "الشرح النصي",
+  "videoExplanation": "شرح الفيديو",
+    "lectureSchedule": "جدول المحاضرات"
+
+
+
+
+}

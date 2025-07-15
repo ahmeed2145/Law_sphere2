@@ -1,0 +1,23 @@
+{
+    "email": "email",
+    "password": "password",
+    "login": "login",
+    "loginLoading": "loginLoading",
+    "forgetPasswoerd": "forgetPasswoerd",
+    "createAccount": "Create Account",
+    "loginSuccess": "Login successful!",
+    "loginFailed": "Login failed. Please try again.",
+    "letsStart": "Let's Start",
+    "onBoardingSlogan": "Create an account so you can access your materials.",
+    "alradyHasAccount": "Aready has account? ",
+    "checkYourInternet": "Check your internet and try later",
+    "anUnexpectedErrorOccurred": "An unexpected error occurred",
+    "thisFieldIsRequiered": "This thisField Is Requiered",
+    "name": "Yourname",
+   "phone": "phoneNumber",
+   "homePage":"HomePage",
+     "textExplanation": "Text Explanation",
+  "videoExplanation": "Video Explanation",
+   "lectureSchedule": "Lecture Schedule"
+    
+}
