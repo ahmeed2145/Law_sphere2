@@ -58,7 +58,7 @@ class HomeViewBody extends StatelessWidget {
             height: 0.60,
             endIndent: 0.05,
             thickness: 0.3,
-            radius: BorderRadius.circular(12),
+            radius: BorderRadius.circular(13),
           ),
         ),
         SliverToBoxAdapter(
