@@ -1,7 +1,7 @@
 class Endpoints {
-  static String baseUrl = 'http://low-sphere21.runasp.net/api/';
-  static String login = 'Account/Login';
-  static String register ='Account/Register';
+  static String baseUrl = 'http://lowspherev1.runasp.net/api/';
+  static String login = 'Auth/login';
+  static String register ='Auth/register';
 }
 
 class ApiKey {
