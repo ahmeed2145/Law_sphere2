@@ -13,8 +13,8 @@ import 'package:law_sphere/core/styles/spacing.dart';
 import 'package:law_sphere/features/login/manager/register_cubit/register_cubit_cubit.dart';
 import 'package:law_sphere/features/login/manager/register_cubit/register_cubit_state.dart';
 import 'package:law_sphere/features/register/data/models/register_model.dart';
+import 'package:law_sphere/features/register/presentation/widgets/drop_down.dart';
 import 'package:law_sphere/generated/l10n.dart';
-
 
 class RegisterViewBody extends StatelessWidget {
   RegisterViewBody({super.key});
@@ -36,7 +36,7 @@ class RegisterViewBody extends StatelessWidget {
               message: S.of(context).createAccount,
             ),
           );
-          
+
           Navigator.pushReplacementNamed(context, Routes.homeView);
         } else if (state is RegisterFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -52,7 +52,6 @@ class RegisterViewBody extends StatelessWidget {
               SliverToBoxAdapter(child: verticalSpace(50)),
               SliverToBoxAdapter(
                 child: CustomAppBar(
-
                   text: S.of(context).createAccount,
                   needArrow: false,
                 ),
@@ -63,9 +62,8 @@ class RegisterViewBody extends StatelessWidget {
                   key: registerFormKey,
                   child: Column(
                     children: [
-                        SizedBox(height: 20.h,),
+                      SizedBox(height: 20.h),
                       AppTextFormField(
-                        
                         controller: fullNameController,
                         prefixIcon: Assets.svgsUser,
                         hintText: S.of(context).name,
@@ -85,7 +83,7 @@ class RegisterViewBody extends StatelessWidget {
                         controller: mobileController,
                         prefixIcon: Assets.svgsMobile,
 
-                         hintText: S.of(context).phone,
+                        hintText: S.of(context).phone,
                         validator: _requiredValidator(context),
                         isPassword: false,
                       ),
@@ -97,7 +95,41 @@ class RegisterViewBody extends StatelessWidget {
                         validator: _requiredValidator(context),
                         isPassword: true,
                       ),
+                      verticalSpace(50),
 
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          margin: EdgeInsets.only(right: 20),
+                          decoration: BoxDecoration(),
+                          height: 60.h,
+                          width: 200.h,
+                          child: DropDown(
+                            hint: "المرحله الدراسيه",
+                            item: [
+                              "الفرقه الاولي",
+                              "الفرقه الثانيه ",
+                              "الفرقه الثالثه",
+                            ],
+                          ),
+                        ),
+                      ),
+                      // verticalSpace(20),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          margin: EdgeInsets.only(right: 20),
+                          height: 60.h,
+                          width: 200.h,
+                          child: DropDown(
+                            hint: "الجامعه ",
+                            item: [
+                              "جامعه المنيا ",
+                              "جامعه القاهره ",
+                            ],
+                          ),
+                        ),
+                      ),
                       verticalSpace(50),
                       state is RegisterLoading
                           ? const CircularProgressIndicator(
@@ -129,7 +161,6 @@ class RegisterViewBody extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(child: verticalSpace(20)),
-           
             ],
           ),
         );
