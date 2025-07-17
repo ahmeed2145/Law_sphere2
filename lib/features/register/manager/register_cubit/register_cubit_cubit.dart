@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:law_sphere/core/errors/failure.dart';
-import 'package:law_sphere/features/login/manager/register_cubit/register_cubit_state.dart';
+import 'package:law_sphere/features/register/manager/register_cubit/register_cubit_state.dart';
 import 'package:law_sphere/features/register/data/models/register_model.dart';
 import 'package:law_sphere/features/register/data/models/register_respo.dart';
 import 'package:law_sphere/features/register/data/repo/register_repo_imp.dart';

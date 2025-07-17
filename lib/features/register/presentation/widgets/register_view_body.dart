@@ -10,8 +10,8 @@ import 'package:law_sphere/core/widgets/app_text_form_field.dart';
 import 'package:law_sphere/core/widgets/custom_app_bar.dart';
 import 'package:law_sphere/core/widgets/custom_snackbar.dart';
 import 'package:law_sphere/core/styles/spacing.dart';
-import 'package:law_sphere/features/login/manager/register_cubit/register_cubit_cubit.dart';
-import 'package:law_sphere/features/login/manager/register_cubit/register_cubit_state.dart';
+import 'package:law_sphere/features/register/manager/register_cubit/register_cubit_cubit.dart';
+import 'package:law_sphere/features/register/manager/register_cubit/register_cubit_state.dart';
 import 'package:law_sphere/features/register/data/models/register_model.dart';
 import 'package:law_sphere/features/register/presentation/widgets/drop_down.dart';
 import 'package:law_sphere/generated/l10n.dart';
@@ -95,7 +95,7 @@ class RegisterViewBody extends StatelessWidget {
                         validator: _requiredValidator(context),
                         isPassword: true,
                       ),
-                      verticalSpace(50),
+                      verticalSpace(20),
 
                       Align(
                         alignment: Alignment.centerRight,
@@ -106,15 +106,10 @@ class RegisterViewBody extends StatelessWidget {
                           width: 200.h,
                           child: DropDown(
                             hint: "المرحله الدراسيه",
-                            item: [
-                              "الفرقه الاولي",
-                              "الفرقه الثانيه ",
-                              "الفرقه الثالثه",
-                            ],
+                            item: ["الفرقه الاولي", "الفرقه الثانيه "],
                           ),
                         ),
                       ),
-                      // verticalSpace(20),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Container(
@@ -126,6 +121,7 @@ class RegisterViewBody extends StatelessWidget {
                             item: [
                               "جامعه المنيا ",
                               "جامعه القاهره ",
+                              "الفرقه الثالثه",
                             ],
                           ),
                         ),
