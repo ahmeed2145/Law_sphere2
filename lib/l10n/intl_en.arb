@@ -21,6 +21,6 @@
   "lectureSchedule": "Lecture Schedule",
   "academicStage": "Academic stage ",
   "university": "university",
-  "forgetPassword": "ForgetPassword?",
-  "sendedcode ": "sended code done"
+  "forgetPassword": "ForgetPassword?", 
+  "sendedCode": "sended code done"
 }

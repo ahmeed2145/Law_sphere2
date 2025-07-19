@@ -77,4 +77,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get forgetPassword => 'ForgetPassword?';
+
+  @override
+  String get sendedCode => 'sended code done';
 }

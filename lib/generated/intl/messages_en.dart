@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "password": MessageLookupByLibrary.simpleMessage("password"),
     "phone": MessageLookupByLibrary.simpleMessage("phoneNumber"),
+    "sendedCode": MessageLookupByLibrary.simpleMessage("sended code done"),
     "textExplanation": MessageLookupByLibrary.simpleMessage("Text Explanation"),
     "thisFieldIsRequiered": MessageLookupByLibrary.simpleMessage(
       "This thisField Is Requiered",

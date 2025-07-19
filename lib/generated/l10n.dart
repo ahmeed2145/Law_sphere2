@@ -244,7 +244,15 @@ class S {
     );
   }
 
-  // skipped getter for the 'sendedcode ' key
+  /// `sended code done`
+  String get sendedCode {
+    return Intl.message(
+      'sended code done',
+      name: 'sendedCode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

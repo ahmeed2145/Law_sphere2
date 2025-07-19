@@ -235,6 +235,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'ForgetPassword?'**
   String get forgetPassword;
+
+  /// No description provided for @sendedCode.
+  ///
+  /// In en, this message translates to:
+  /// **'sended code done'**
+  String get sendedCode;
 }
 
 class _AppLocalizationsDelegate

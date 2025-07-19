@@ -77,4 +77,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get forgetPassword => 'نسيت كلمه المرور؟';
+
+  @override
+  String get sendedCode => 'تم إرسال الكود';
 }

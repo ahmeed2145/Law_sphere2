@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "phone": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+    "sendedCode": MessageLookupByLibrary.simpleMessage("تم إرسال الكود"),
     "textExplanation": MessageLookupByLibrary.simpleMessage("الشرح النصي"),
     "thisFieldIsRequiered": MessageLookupByLibrary.simpleMessage(
       "هذا الحقل مطلوب",
