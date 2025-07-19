@@ -218,6 +218,33 @@ class S {
       args: [],
     );
   }
+
+  /// `Academic stage `
+  String get academicStage {
+    return Intl.message(
+      'Academic stage ',
+      name: 'academicStage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `university`
+  String get university {
+    return Intl.message('university', name: 'university', desc: '', args: []);
+  }
+
+  /// `ForgetPassword?`
+  String get forgetPassword {
+    return Intl.message(
+      'ForgetPassword?',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'sendedcode ' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

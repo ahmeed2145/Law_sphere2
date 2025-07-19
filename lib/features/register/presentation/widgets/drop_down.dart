@@ -1,34 +1,60 @@
 import 'package:flutter/material.dart';
 
-class DropDown extends StatefulWidget {
-  const DropDown({super.key, required this.item, this.hint});
-  final List<String> item;
-   final  String? hint;
+class DropDownItem<T> {
+  final String label;
+  final T value;
+
+  DropDownItem({required this.label, required this.value});
+
   @override
-  State<DropDown> createState() => _DropDownState();
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DropDownItem<T> &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => value.hashCode;
 }
 
-class _DropDownState extends State<DropDown> {
-  String? selectedValue;
+class DropDown<T> extends StatefulWidget {
+  const DropDown({
+    super.key,
+    required this.items,
+    required this.onChanged,
+    this.hint,
+  });
+
+  final List<DropDownItem<T>> items;
+  final String? hint;
+  final void Function(T value) onChanged;
+
+  @override
+  State<DropDown<T>> createState() => _DropDownState<T>();
+}
+
+class _DropDownState<T> extends State<DropDown<T>> {
+  DropDownItem<T>? selectedItem;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton(
-       underline: SizedBox(),
-
-      value: selectedValue,
-      hint:widget.hint != null ? Text(widget.hint!) : null,
-items: widget.item
-    .map(
-      (value) => DropdownMenuItem<String>(
-        value: value,
-        child: Text(value),
-      ),
-    )
-    .toList(),      onChanged: (Object? value) {
+    return DropdownButton<DropDownItem<T>>(
+      isExpanded: true,
+      underline: const SizedBox(),
+      value: selectedItem,
+      hint: widget.hint != null ? Text(widget.hint!) : null,
+      items: widget.items.map((item) {
+        return DropdownMenuItem<DropDownItem<T>>(
+          value: item,
+          child: Text(item.label),
+        );
+      }).toList(),
+      onChanged: (DropDownItem<T>? item) {
+        if (item == null) return;
         setState(() {
-          selectedValue = value as String ;
+          selectedItem = item;
         });
+        widget.onChanged(item.value);
       },
     );
   }

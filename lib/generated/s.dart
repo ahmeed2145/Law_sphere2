@@ -217,6 +217,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Lecture Schedule'**
   String get lectureSchedule;
+
+  /// No description provided for @academicStage.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic stage '**
+  String get academicStage;
+
+  /// No description provided for @university.
+  ///
+  /// In en, this message translates to:
+  /// **'university'**
+  String get university;
+
+  /// No description provided for @forgetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'ForgetPassword?'**
+  String get forgetPassword;
 }
 
 class _AppLocalizationsDelegate

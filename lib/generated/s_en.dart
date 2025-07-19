@@ -68,4 +68,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lectureSchedule => 'Lecture Schedule';
+
+  @override
+  String get academicStage => 'Academic stage ';
+
+  @override
+  String get university => 'university';
+
+  @override
+  String get forgetPassword => 'ForgetPassword?';
 }

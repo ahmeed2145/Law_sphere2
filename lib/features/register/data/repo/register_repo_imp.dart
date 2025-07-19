@@ -6,6 +6,7 @@ import 'package:law_sphere/core/api/endpoints.dart';
 import 'package:law_sphere/core/errors/failure.dart';
 import 'package:law_sphere/features/register/data/models/register_model.dart';
 import 'package:law_sphere/features/register/data/models/register_respo.dart';
+
 class RegisterRepoImpl {
   final ApiConsumer api;
 
@@ -19,9 +20,15 @@ class RegisterRepoImpl {
         isFromData: false,
       );
 
+      if (response['success'] == false) {
+        final message = response['message'] ?? 'حدث خطأ غير متوقع';
+        return Left(ServerFailure(message));
+      }
+
       return Right(RegisterResponse.fromJson(response));
+
     } on DioException catch (e) {
-      return Left(ServerFailure.fromDioExceptio(e));
+return Left(ServerFailure.fromDioExceptio(e));
     } on SocketException {
       return Left(ServerFailure('No internet connection'));
     } catch (_) {

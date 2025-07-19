@@ -68,4 +68,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get lectureSchedule => 'جدول المحاضرات';
+
+  @override
+  String get academicStage => 'المرحلة الدراسية';
+
+  @override
+  String get university => 'الجامعة';
+
+  @override
+  String get forgetPassword => 'نسيت كلمه المرور؟';
 }

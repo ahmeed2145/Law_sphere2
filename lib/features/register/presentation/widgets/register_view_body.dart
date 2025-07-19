@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,14 +17,35 @@ import 'package:law_sphere/features/register/data/models/register_model.dart';
 import 'package:law_sphere/features/register/presentation/widgets/drop_down.dart';
 import 'package:law_sphere/generated/l10n.dart';
 
-class RegisterViewBody extends StatelessWidget {
-  RegisterViewBody({super.key});
+class RegisterViewBody extends StatefulWidget {
+  const RegisterViewBody({super.key});
 
+  @override
+  State<RegisterViewBody> createState() => _RegisterViewBodyState();
+}
+
+class _RegisterViewBodyState extends State<RegisterViewBody> {
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final mobileController = TextEditingController();
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+
+  int? selectedLevel;
+  String? selectedUniversity;
+
+  final Map<String, int> levelMap = {
+    "الفرقة الأولى": 1,
+    "الفرقة الثانية": 2,
+    "الفرقة الثالثة": 3,
+    "الفرقة الرابعة": 4,
+  };
+
+  final List<String> universities = [
+    "جامعة المنيا",
+    "جامعة القاهرة",
+    "جامعة أسيوط",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +58,6 @@ class RegisterViewBody extends StatelessWidget {
               message: S.of(context).createAccount,
             ),
           );
-
           Navigator.pushReplacementNamed(context, Routes.homeView);
         } else if (state is RegisterFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -62,7 +83,6 @@ class RegisterViewBody extends StatelessWidget {
                   key: registerFormKey,
                   child: Column(
                     children: [
-                      SizedBox(height: 20.h),
                       AppTextFormField(
                         controller: fullNameController,
                         prefixIcon: Assets.svgsUser,
@@ -82,7 +102,6 @@ class RegisterViewBody extends StatelessWidget {
                       AppTextFormField(
                         controller: mobileController,
                         prefixIcon: Assets.svgsMobile,
-
                         hintText: S.of(context).phone,
                         validator: _requiredValidator(context),
                         isPassword: false,
@@ -97,36 +116,37 @@ class RegisterViewBody extends StatelessWidget {
                       ),
                       verticalSpace(20),
 
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          margin: EdgeInsets.only(right: 20),
-                          decoration: BoxDecoration(),
-                          height: 60.h,
-                          width: 200.h,
-                          child: DropDown(
-                            hint: "المرحله الدراسيه",
-                            item: ["الفرقه الاولي", "الفرقه الثانيه "],
-                          ),
+                      SizedBox(
+                        width: 400.h,
+                        child: DropDown<int>(
+                          hint: S.of(context).academicStage,
+                          items: levelMap.entries
+                              .map(
+                                (e) =>
+                                    DropDownItem(label: e.key, value: e.value),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            selectedLevel = value;
+                          },
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          margin: EdgeInsets.only(right: 20),
-                          height: 60.h,
-                          width: 200.h,
-                          child: DropDown(
-                            hint: "الجامعه ",
-                            item: [
-                              "جامعه المنيا ",
-                              "جامعه القاهره ",
-                              "الفرقه الثالثه",
-                            ],
-                          ),
+                      verticalSpace(15),
+
+                      SizedBox(
+                        width: 400.h,
+                        child: DropDown<String>(
+                          hint: S.of(context).university,
+                          items: universities
+                              .map((e) => DropDownItem(label: e, value: e))
+                              .toList(),
+                          onChanged: (value) {
+                            selectedUniversity = value;
+                          },
                         ),
                       ),
-                      verticalSpace(50),
+                      verticalSpace(30),
+
                       state is RegisterLoading
                           ? const CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation(
@@ -141,12 +161,24 @@ class RegisterViewBody extends StatelessWidget {
                               onPressed: () {
                                 if (registerFormKey.currentState?.validate() ??
                                     false) {
+                                  if (selectedLevel == null ||
+                                      selectedUniversity == null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      CustomSnackBar.error(
+                                        context: context,
+                                        message: "يجب اختيار المرحلة والجامعة",
+                                      ),
+                                    );
+                                    return;
+                                  }
                                   final model = RegisterModel(
                                     email: emailController.text,
                                     password: passwordController.text,
                                     fullName: fullNameController.text,
                                     mobile: mobileController.text,
                                     role: 1,
+                                    level: selectedLevel!,
+                                    university: selectedUniversity!,
                                   );
                                   context.read<RegisterCubit>().register(model);
                                 }
@@ -157,6 +189,7 @@ class RegisterViewBody extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(child: verticalSpace(20)),
+             
             ],
           ),
         );
@@ -173,3 +206,4 @@ class RegisterViewBody extends StatelessWidget {
     };
   }
 }
+

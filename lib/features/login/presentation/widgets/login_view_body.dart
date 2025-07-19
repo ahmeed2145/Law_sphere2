@@ -96,6 +96,27 @@ class LoginViewBody extends StatelessWidget {
                         isPassword: true,
                       ),
                       verticalSpace(32),
+                      Padding(
+                        padding:  EdgeInsets.only(left: 210.h),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: AppTextButton(
+                            buttonText: S.of(context).forgetPasswoerd,
+                                                
+                            textStyle: TextStyle(
+                              fontFamily: "GE SS TWO",
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            backgroundColor: AppColors.whiteColor,
+                            onPressed: () {
+                              Navigator.pushNamed(context, "/requstResetPasswordView");
+                            },
+                          ),
+                        ),
+                      ),
+
+                      verticalSpace(32),
                       state is LoginLoading
                           ? const CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation(

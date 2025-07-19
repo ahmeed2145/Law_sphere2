@@ -18,7 +18,11 @@
     "homePage":"الصفحه الرئيسيه",
       "textExplanation": "الشرح النصي",
   "videoExplanation": "شرح الفيديو",
-    "lectureSchedule": "جدول المحاضرات"
+    "lectureSchedule": "جدول المحاضرات",
+   "academicStage":"المرحلة الدراسية",
+    "university":"الجامعة",
+    "forgetPassword":"نسيت كلمه المرور؟",
+    "sendedcode":"تم إرسال الكود"
 
 
 

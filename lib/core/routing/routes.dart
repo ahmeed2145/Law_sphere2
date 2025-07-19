@@ -1,4 +1,7 @@
 class Routes {
+    static const String requstResetPasswordViewBody = "/equstResetPasswordViewBody";
+    static const String requstResetPasswordView = "/requstResetPasswordView";
+
   static const String onBoardingView = "/OnBoardingView";
   static const String loginView = "/LoginView";
   static const String homeView = "/HomeView";
