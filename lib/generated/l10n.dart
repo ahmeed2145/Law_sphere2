@@ -253,6 +253,16 @@ class S {
       args: [],
     );
   }
+
+  /// `reatPassword`
+  String get reatPassword {
+    return Intl.message(
+      'reatPassword',
+      name: 'reatPassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

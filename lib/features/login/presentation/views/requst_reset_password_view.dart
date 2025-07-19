@@ -11,7 +11,7 @@ class RequstResetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
- create: (context) => RequsetCubitCubit(getIt<ResetPasswordRepoImpl>())  ,
+ create: (context) => RequsetCubitCubit(getIt<ResetPasswordRepo>())  ,
      child: Scaffold(body: RequstResetPasswordViewBody()),
     );
   }

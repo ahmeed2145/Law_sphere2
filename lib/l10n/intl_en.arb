@@ -22,5 +22,6 @@
   "academicStage": "Academic stage ",
   "university": "university",
   "forgetPassword": "ForgetPassword?", 
-  "sendedCode": "sended code done"
+  "sendedCode": "sended code done",
+  "reatPassword":"reatPassword"
 }
