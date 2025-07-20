@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkYourInternet": MessageLookupByLibrary.simpleMessage(
       "تحقق من اتصالك بالإنترنت وحاول مرة أخرى.",
     ),
+    "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "createAccount": MessageLookupByLibrary.simpleMessage("انشاء حساب"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
     "forgetPasswoerd": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
@@ -60,6 +61,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "هذا الحقل مطلوب",
     ),
     "university": MessageLookupByLibrary.simpleMessage("الجامعة"),
+    "verificationsend": MessageLookupByLibrary.simpleMessage(
+      "تم ارسال كود التحقق",
+    ),
     "videoExplanation": MessageLookupByLibrary.simpleMessage("شرح الفيديو"),
   };
 }

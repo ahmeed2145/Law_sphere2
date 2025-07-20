@@ -23,7 +23,9 @@
     "university":"الجامعة",
     "forgetPassword":"نسيت كلمه المرور؟",
     "sendedCode":"تم إرسال الكود",
-    "reatPassword":"ارسال الكود"
+    "reatPassword":"ارسال الكود",
+    "confirm":"تأكيد",
+    "verificationsend":"تم ارسال كود التحقق"
 
 
 

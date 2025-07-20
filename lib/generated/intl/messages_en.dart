@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkYourInternet": MessageLookupByLibrary.simpleMessage(
       "Check your internet and try later",
     ),
+    "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
     "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
     "email": MessageLookupByLibrary.simpleMessage("email"),
     "forgetPasswoerd": MessageLookupByLibrary.simpleMessage("forgetPasswoerd"),
@@ -58,6 +59,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "This thisField Is Requiered",
     ),
     "university": MessageLookupByLibrary.simpleMessage("university"),
+    "verificationsend": MessageLookupByLibrary.simpleMessage(
+      "Verification code has been sent",
+    ),
     "videoExplanation": MessageLookupByLibrary.simpleMessage(
       "Video Explanation",
     ),

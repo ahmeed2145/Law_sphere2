@@ -80,4 +80,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sendedCode => 'sended code done';
+
+  @override
+  String get reatPassword => 'reatPassword';
+
+  @override
+  String get confirm => 'confirm';
+
+  @override
+  String get verificationsend => 'Verification code has been sent';
 }
