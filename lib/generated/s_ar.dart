@@ -80,4 +80,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sendedCode => 'تم إرسال الكود';
+
+  @override
+  String get reatPassword => 'ارسال الكود';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get verificationsend => 'تم ارسال كود التحقق';
 }

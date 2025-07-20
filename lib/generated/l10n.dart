@@ -263,6 +263,21 @@ class S {
       args: [],
     );
   }
+
+  /// `confirm`
+  String get confirm {
+    return Intl.message('confirm', name: 'confirm', desc: '', args: []);
+  }
+
+  /// `Verification code has been sent`
+  String get verificationsend {
+    return Intl.message(
+      'Verification code has been sent',
+      name: 'verificationsend',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

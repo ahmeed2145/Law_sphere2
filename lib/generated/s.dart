@@ -241,6 +241,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'sended code done'**
   String get sendedCode;
+
+  /// No description provided for @reatPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'reatPassword'**
+  String get reatPassword;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'confirm'**
+  String get confirm;
+
+  /// No description provided for @verificationsend.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code has been sent'**
+  String get verificationsend;
 }
 
 class _AppLocalizationsDelegate

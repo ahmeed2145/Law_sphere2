@@ -2,7 +2,7 @@ class Endpoints {
   static String baseUrl = 'http://lowspherev1.runasp.net/api/';
   static String login = 'Auth/login';
   static String register ='Auth/register';
-  static String requstPassword = 'request-reset-password';
+  static String requstPassword = 'Auth/request-reset-password';
 }
 
 class ApiKey {

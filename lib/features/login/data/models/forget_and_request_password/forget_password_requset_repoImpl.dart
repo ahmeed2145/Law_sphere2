@@ -6,12 +6,16 @@ import 'package:law_sphere/core/errors/failure.dart';
 import 'package:law_sphere/core/function/is_arabic.dart';
 import 'package:law_sphere/features/login/data/models/forget_and_request_password/reset_password_response.dart';
 
+
+
+
 abstract class ResetPasswordRepo {
   Future<Either<Failure, ResetPasswordResponse>> requestResetLink(String email);
 }
 
 class ResetPasswordRepoImpl implements ResetPasswordRepo {
   final DioConsumer dio;
+
   ResetPasswordRepoImpl(this.dio);
 
   @override
@@ -22,8 +26,8 @@ class ResetPasswordRepoImpl implements ResetPasswordRepo {
         data: {'email': email},
       );
 
-   final result = ResetPasswordResponse.fromJson(response.data);
-return right(result);
+      final result = ResetPasswordResponse.fromRawText(response.toString());
+      return right(result);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioExceptio(e));
     } catch (e) {

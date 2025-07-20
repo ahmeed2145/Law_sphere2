@@ -23,5 +23,8 @@
   "university": "university",
   "forgetPassword": "ForgetPassword?", 
   "sendedCode": "sended code done",
-  "reatPassword":"reatPassword"
+  "reatPassword":"reatPassword",
+  "confirm" :"confirm",
+  "verificationsend":"Verification code has been sent"
+
 }
