@@ -241,6 +241,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'sended code done'**
   String get sendedCode;
+
+  /// No description provided for @reatPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'reatPassword'**
+  String get reatPassword;
 }
 
 class _AppLocalizationsDelegate

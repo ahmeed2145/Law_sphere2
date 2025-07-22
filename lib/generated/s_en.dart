@@ -80,4 +80,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sendedCode => 'sended code done';
+
+  @override
+  String get reatPassword => 'reatPassword';
 }

@@ -37,7 +37,7 @@ class RequstResetPasswordViewBody extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             CustomSnackBar.success(
               context: context,
-              message: S.of(context).password,
+              message: state.message,
             ),
           );
         } else if (state is ForgotPasswordError) {

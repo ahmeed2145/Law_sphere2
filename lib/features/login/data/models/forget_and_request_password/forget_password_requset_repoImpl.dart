@@ -17,13 +17,13 @@ class ResetPasswordRepoImpl implements ResetPasswordRepo {
   @override
   Future<Either<Failure, ResetPasswordResponse>> requestResetLink(String email) async {
     try {
+      
+
       final response = await dio.post(
         Endpoints.requstPassword,
         data: {'email': email},
       );
-
-   final result = ResetPasswordResponse.fromJson(response.data);
-return right(result);
+final result = ResetPasswordResponse(message: response.data);return right(result);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioExceptio(e));
     } catch (e) {
