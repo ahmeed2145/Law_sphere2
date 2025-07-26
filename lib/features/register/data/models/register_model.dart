@@ -4,16 +4,17 @@ class RegisterModel {
   final String fullName;
   final int role;
   final String mobile;
-  final String  university;
-  final int  level;
+  final String university;
+  final String level;
 
-  RegisterModel( {
+  RegisterModel({
     required this.email,
     required this.password,
     required this.fullName,
     required this.role,
     required this.mobile,
-     required this.university, required this.level,
+    required this.university,
+    required this.level,
   });
 
   Map<String, dynamic> toJson() {
@@ -24,7 +25,7 @@ class RegisterModel {
       'role': role,
       'mobile': mobile,
       "university": university,
-      "level":level,
+      "level": level,
     };
   }
 }

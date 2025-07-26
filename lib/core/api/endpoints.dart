@@ -1,8 +1,11 @@
 class Endpoints {
   static String baseUrl = 'http://lowspherev1.runasp.net/api/';
   static String login = 'Auth/login';
-  static String register ='Auth/register';
+  static String register = 'Auth/register';
   static String requstPassword = 'Auth/request-reset-password';
+  static String levelUsed = 'Level/used';
+    static String universitySelection = 'university-selection';
+
 }
 
 class ApiKey {
@@ -11,10 +14,7 @@ class ApiKey {
   static String id = 'id';
   static String email = 'email';
   static String password = 'password';
-    static String fullName = 'fullName';
-    static String role = 'role';
-    static String mobile = 'mobile';
-
-
-
+  static String fullName = 'fullName';
+  static String role = 'role';
+  static String mobile = 'mobile';
 }

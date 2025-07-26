@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,10 +10,11 @@ import 'package:law_sphere/core/widgets/app_text_form_field.dart';
 import 'package:law_sphere/core/widgets/custom_app_bar.dart';
 import 'package:law_sphere/core/widgets/custom_snackbar.dart';
 import 'package:law_sphere/core/styles/spacing.dart';
+import 'package:law_sphere/features/register/manager/level/level_cubit.dart';
 import 'package:law_sphere/features/register/manager/register_cubit/register_cubit_cubit.dart';
 import 'package:law_sphere/features/register/manager/register_cubit/register_cubit_state.dart';
 import 'package:law_sphere/features/register/data/models/register_model.dart';
-import 'package:law_sphere/features/register/presentation/widgets/drop_down.dart';
+import 'package:law_sphere/features/register/manager/university_cubit/university_cubit.dart';
 import 'package:law_sphere/generated/l10n.dart';
 
 class RegisterViewBody extends StatefulWidget {
@@ -30,22 +30,18 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   final passwordController = TextEditingController();
   final mobileController = TextEditingController();
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
-
-  int? selectedLevel;
+  String? selectedLevel;
   String? selectedUniversity;
-
-  final Map<String, int> levelMap = {
-    "الفرقة الأولى": 1,
-    "الفرقة الثانية": 2,
-    "الفرقة الثالثة": 3,
-    "الفرقة الرابعة": 4,
-  };
-
-  final List<String> universities = [
-    "جامعة المنيا",
-    "جامعة القاهرة",
-    "جامعة أسيوط",
-  ];
+  String? selectedLevelName;
+  String? selectedUniversityName;
+  final Map<String, String> levelMap = {};
+  Map<String, String> universityMap = {};
+  @override
+  void initState() {
+    super.initState();
+    context.read<LevelCubit>().getLevels();
+    context.read<UniversityCubit>().getUniversities();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,38 +111,87 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         isPassword: true,
                       ),
                       verticalSpace(20),
-
                       SizedBox(
                         width: 400.h,
-                        child: DropDown<int>(
-                          hint: S.of(context).academicStage,
-                          items: levelMap.entries
-                              .map(
-                                (e) =>
-                                    DropDownItem(label: e.key, value: e.value),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            selectedLevel = value;
+                        child: BlocBuilder<LevelCubit, LevelState>(
+                          builder: (context, state) {
+                            if (state is LevelLoading) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else if (state is LevelLoaded) {
+                              universityMap.clear();
+                              levelMap.clear();
+                              for (var level in state.levels) {
+                                levelMap[level.name] = level.id;
+                              }
+                              return DropdownButton<String>(
+                                underline: SizedBox(),
+
+                                isExpanded: true,
+                                value: selectedLevelName,
+                                hint: Text(S.of(context).academicStage),
+                                items: levelMap.keys.map((name) {
+                                  return DropdownMenuItem<String>(
+                                    value: name,
+                                    child: Text(name),
+                                  );
+                                }).toList(),
+                                onChanged: (String? name) {
+                                  setState(() {
+                                    selectedLevelName = name!;
+                                    selectedLevel = levelMap[name];
+                                  });
+                                },
+                              );
+                            } else {
+                              return const Text("حدث خطأ في تحميل البيانات");
+                            }
                           },
                         ),
                       ),
                       verticalSpace(15),
-
                       SizedBox(
                         width: 400.h,
-                        child: DropDown<String>(
-                          hint: S.of(context).university,
-                          items: universities
-                              .map((e) => DropDownItem(label: e, value: e))
-                              .toList(),
-                          onChanged: (value) {
-                            selectedUniversity = value;
+                        child: BlocBuilder<UniversityCubit, UniversityState>(
+                          builder: (context, state) {
+                            if (state is UniversityLoading) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else if (state is UniversitySuccess) {
+                              universityMap.clear();
+                              for (var uni in state.universities) {
+                                universityMap[uni.name] = uni.id;
+                              }
+
+                              return DropdownButton<String>(
+                                isExpanded: true,
+                                value:
+                                    selectedUniversity,
+                                hint: Text(S.of(context).university),
+                                items: universityMap.entries.map((entry) {
+                                  return DropdownMenuItem<String>(
+                                    value: entry
+                                        .value,
+                                    child: Text(
+                                      entry.key,
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (String? id) {
+                                  setState(() {
+                                    selectedUniversity = id!;
+                                  });
+                                },
+                              );
+                            } else {
+                              return const Text("حدث خطأ في تحميل الجامعات");
+                            }
                           },
                         ),
                       ),
                       verticalSpace(30),
-
                       state is RegisterLoading
                           ? const CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation(
@@ -171,6 +216,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                                     );
                                     return;
                                   }
+                                  print(
+                                    'University name: ----------------r$selectedUniversity',
+                                  ); 
+
                                   final model = RegisterModel(
                                     email: emailController.text,
                                     password: passwordController.text,
@@ -180,7 +229,18 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                                     level: selectedLevel!,
                                     university: selectedUniversity!,
                                   );
+
                                   context.read<RegisterCubit>().register(model);
+                                  if (selectedLevel == null ||
+                                      selectedUniversity == null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      CustomSnackBar.error(
+                                        context: context,
+                                        message: "يجب اختيار المرحلة والجامعة",
+                                      ),
+                                    );
+                                    return;
+                                  }
                                 }
                               },
                             ),
@@ -189,7 +249,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 ),
               ),
               SliverToBoxAdapter(child: verticalSpace(20)),
-             
             ],
           ),
         );
@@ -206,4 +265,3 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     };
   }
 }
-
