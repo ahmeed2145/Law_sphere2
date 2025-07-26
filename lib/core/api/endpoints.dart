@@ -3,6 +3,7 @@ class Endpoints {
   static String login = 'Auth/login';
   static String register ='Auth/register';
   static String requstPassword = 'Auth/request-reset-password';
+
 }
 
 class ApiKey {
@@ -14,6 +15,8 @@ class ApiKey {
     static String fullName = 'fullName';
     static String role = 'role';
     static String mobile = 'mobile';
+        static String requstPassword = 'requstPassword';
+
 
 
 
