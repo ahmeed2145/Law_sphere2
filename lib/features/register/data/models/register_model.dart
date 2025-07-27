@@ -5,7 +5,7 @@ class RegisterModel {
   final int role;
   final String mobile;
   final String university;
-  final String level;
+  final int level;
 
   RegisterModel({
     required this.email,
@@ -24,8 +24,8 @@ class RegisterModel {
       'fullName': fullName,
       'role': role,
       'mobile': mobile,
-      "university": university,
-      "level": level,
+      'university': university,
+      'level': level,
     };
   }
 }

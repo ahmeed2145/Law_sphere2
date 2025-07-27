@@ -123,7 +123,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                               universityMap.clear();
                               levelMap.clear();
                               for (var level in state.levels) {
-                                levelMap[level.name] = level.id;
+                                levelMap[level.name] = level.level.toString();
                               }
                               return DropdownButton<String>(
                                 underline: SizedBox(),
@@ -167,16 +167,12 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
                               return DropdownButton<String>(
                                 isExpanded: true,
-                                value:
-                                    selectedUniversity,
+                                value: selectedUniversity,
                                 hint: Text(S.of(context).university),
                                 items: universityMap.entries.map((entry) {
                                   return DropdownMenuItem<String>(
-                                    value: entry
-                                        .value,
-                                    child: Text(
-                                      entry.key,
-                                    ),
+                                    value: entry.value,
+                                    child: Text(entry.key),
                                   );
                                 }).toList(),
                                 onChanged: (String? id) {
@@ -218,7 +214,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                                   }
                                   print(
                                     'University name: ----------------r$selectedUniversity',
-                                  ); 
+                                  );
 
                                   final model = RegisterModel(
                                     email: emailController.text,
@@ -226,7 +222,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                                     fullName: fullNameController.text,
                                     mobile: mobileController.text,
                                     role: 1,
-                                    level: selectedLevel!,
+                                    level: int.tryParse(selectedLevel!) ?? 0,
                                     university: selectedUniversity!,
                                   );
 

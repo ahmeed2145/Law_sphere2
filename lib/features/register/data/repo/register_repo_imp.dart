@@ -14,13 +14,12 @@ class RegisterRepoImpl {
 
   Future<Either<Failure, RegisterResponse>> register(RegisterModel user) async {
     try {
-    final response = await api.post(
-  Endpoints.register,
-  data: {
-    "dto": user.toJson(), 
-  },
-  isFromData: false,
-);
+      final response = await api.post(
+        Endpoints.register,
+        data: user.toJson(),
+
+        isFromData: false,
+      );
 
       if (response['success'] == false) {
         final message = response['message'] ?? 'حدث خطأ غير متوقع';
@@ -28,9 +27,8 @@ class RegisterRepoImpl {
       }
 
       return Right(RegisterResponse.fromJson(response));
-
     } on DioException catch (e) {
-return Left(ServerFailure.fromDioExceptio(e));
+      return Left(ServerFailure.fromDioExceptio(e));
     } on SocketException {
       return Left(ServerFailure('No internet connection'));
     } catch (_) {
