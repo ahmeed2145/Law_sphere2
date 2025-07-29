@@ -166,6 +166,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                               }
 
                               return DropdownButton<String>(
+                                underline:  SizedBox(),
                                 isExpanded: true,
                                 value: selectedUniversity,
                                 hint: Text(S.of(context).university),

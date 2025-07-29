@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:law_sphere/core/api/endpoints.dart';
 import 'package:law_sphere/core/routing/routes.dart';
 import 'package:law_sphere/features/splash/presentation/views/widgets/fade_animation.dart';
 import 'package:law_sphere/features/splash/presentation/views/widgets/sliding_text.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -20,8 +22,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
     initSlidingAndFadeAnimation();
-
-    navigateToHomeView();
+    navigateToNextView();
   }
 
   @override
@@ -61,11 +62,22 @@ class _SplashViewBodyState extends State<SplashViewBody>
     animationController.forward();
   }
 
-  void navigateToHomeView() {
-    Future.delayed(const Duration(seconds: 4), () {
-      if (mounted) {
-        Navigator.pushNamed(context, Routes.onBoardingView);
-      }
-    });
+  void navigateToNextView() async {
+    final storage = FlutterSecureStorage();
+
+    await Future.delayed(const Duration(seconds: 4));
+
+    if (!mounted) return;
+
+    final token = await storage.read(key: ApiKey.token);
+    final hasSeenOnBoarding = await storage.read(key: 'hasSeenOnBoarding');
+
+    if (token != null && token.isNotEmpty) {
+      Navigator.pushReplacementNamed(context, Routes.homeView);
+    } else if (hasSeenOnBoarding == 'true') {
+      Navigator.pushReplacementNamed(context, Routes.loginView);
+    } else {
+      Navigator.pushReplacementNamed(context, Routes.onBoardingView);
+    }
   }
 }

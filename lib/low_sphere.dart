@@ -24,7 +24,7 @@ class LawSphere extends StatelessWidget {
         ],
         supportedLocales: S.delegate.supportedLocales,
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.splashView,
+        initialRoute: Routes.loginView,
 
         theme: ThemeData(),
         debugShowCheckedModeBanner: false,

@@ -13,61 +13,99 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(child: verticalSpace(10.h)),
-        SliverToBoxAdapter(
-          child: CustomAppBar(
-            text: S.of(context).homePage,
-            needArrow: false,
-            color: AppColors.inActiveDotsColor,
-            textStyle: TextStyle(),
-          ),
-        ),
-        SliverToBoxAdapter(child: verticalSpace(12)),
-        SliverToBoxAdapter(child: SimpleAutoSlider()),
-        SliverToBoxAdapter(child: verticalSpace(50.h)),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomActionButton(
-                  text: S.of(context).textExplanation,
-                  onPressed: () {},
-                  borderRadius: 12,
-                  width: 180.h,
-                  height: 100.h,
+    return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+              ),
+              child: Text(
+                S.of(context).homePage,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
                 ),
-                CustomActionButton(
-                  text: S.of(context).videoExplanation,
-                  onPressed: () {},
-                  borderRadius: 12,
-                  width: 180.h,
-                  height: 100.h,
-                ),
-              ],
+              ),
             ),
-          ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('الإعدادات'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('تسجيل الخروج'),
+              onTap: () {},
+            ),
+          ],
         ),
-        SliverToBoxAdapter(child: verticalSpace(41)),
-
-        SliverToBoxAdapter(
-          child: Divider(
-            height: 0.60,
-            endIndent: 0.05,
-            thickness: 0.3,
-            radius: BorderRadius.circular(13),
-          ),
+      ),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: verticalSpace(10.h)),
+            SliverToBoxAdapter(
+              child: CustomAppBar(
+                needDrawer: true,
+                text: S.of(context).homePage,
+                needArrow: false,
+                color: AppColors.inActiveDotsColor,
+              ),
+            ),
+            SliverToBoxAdapter(child: verticalSpace(12)),
+            SliverToBoxAdapter(child: SimpleAutoSlider()),
+            SliverToBoxAdapter(child: verticalSpace(50.h)),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomActionButton(
+                      text: S.of(context).textExplanation,
+                      onPressed: () {},
+                      borderRadius: 12,
+                      width: 180.h,
+                      height: 100.h,
+                    ),
+                    CustomActionButton(
+                      text: S.of(context).videoExplanation,
+                      onPressed: () {},
+                      borderRadius: 12,
+                      width: 180.h,
+                      height: 100.h,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(child: verticalSpace(41)),
+            SliverToBoxAdapter(
+              child: Divider(
+                height: 0.60,
+                endIndent: 0.05,
+                thickness: 0.3,
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: Text(
+                  S.of(context).lectureSchedule,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'GE SS TWO',
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-        SliverToBoxAdapter(
-          child: Text(
-            S.of(context).lectureSchedule,
-            style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'GE SS TWO'),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -79,7 +117,7 @@ class SimpleAutoSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> items = isArabic()
         ? ['العنصر الأول', 'العنصر الثاني', 'العنصر الثالث']
-        : ['العنصر الثالث', 'العنصر الثاني', 'العنصر الأول'];
+        : ['First Item', 'Second Item', 'Third Item'];
 
     return CarouselSlider(
       options: CarouselOptions(

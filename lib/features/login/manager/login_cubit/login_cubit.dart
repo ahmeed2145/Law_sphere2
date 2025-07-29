@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:law_sphere/core/api/endpoints.dart';
@@ -21,8 +23,17 @@ class LoginCubit extends Cubit<LoginState> {
       },
       (response) async {
         emit(LoginSuccess(response));
+
         const storage = FlutterSecureStorage();
-        await storage.write(key: ApiKey.token, value: response.token);
+
+        await storage.write(key: ApiKey.token, value: response.data.token);
+
+        await storage.write(
+          key: 'user',
+          value: jsonEncode(response.data.user.toJson()),
+        );
+
+        await storage.write(key: 'isLoggedIn', value: 'true');
       },
     );
   }

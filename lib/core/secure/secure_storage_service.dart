@@ -3,6 +3,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class SecureStorageService {
   final FlutterSecureStorage _flutterSecureStorage =
       const FlutterSecureStorage();
+  static const String _isLoggedInKey = 'isLoggedIn';
+    final FlutterSecureStorage _storage = const FlutterSecureStorage();
+
 
   Future<String?> getValue(String key) {
     return _flutterSecureStorage.read(key: key);
@@ -22,5 +25,12 @@ class SecureStorageService {
 
   Future<void> deleteAllValue() async {
     await _flutterSecureStorage.deleteAll();
+  }
+
+  Future<bool> isLoggedIn() async {
+    final result = await _storage.read(key: _isLoggedInKey);
+        return result == 'true';
+
+
   }
 }
